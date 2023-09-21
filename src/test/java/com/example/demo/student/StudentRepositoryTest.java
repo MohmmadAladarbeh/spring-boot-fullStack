@@ -11,13 +11,13 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 /**
- * @DataJpaTest: we use it because we want to test repository
+ * @DataJpaTest: we use this notation if we want to test specific repository
  * */
 @DataJpaTest
 class StudentRepositoryTest {
 
     @Autowired
-    StudentRepository studentRepository;
+    StudentRepository studentRepositoryUnderTest;
 
 
 
@@ -28,22 +28,22 @@ class StudentRepositoryTest {
                 "mohmad@gmail.com",
                 Gender.FEMALE
         );
-        studentRepository.save(student);
+        studentRepositoryUnderTest.save(student);
     }
 
     @AfterEach
     void deleteStudent () {
-        studentRepository.deleteAll();
+        studentRepositoryUnderTest.deleteAll();
     }
 
     @Test
     void itShouldCheckIfStudentExistsEmail() {
 
         // given
-        List <Student> student = studentRepository.findAll();
+        List <Student> student = studentRepositoryUnderTest.findAll();
         // when
 
-        boolean result = studentRepository.selectExistsEmail(student.get(0).getEmail());
+        boolean result = studentRepositoryUnderTest.selectExistsEmail(student.get(0).getEmail());
 
         // then
         assertThat(result).isTrue();
@@ -53,10 +53,10 @@ class StudentRepositoryTest {
     void itShouldCheckIfStudentDoesNotExistEmail() {
 
         // given
-        List <Student> student = studentRepository.findAll();
+        List <Student> student = studentRepositoryUnderTest.findAll();
         // when
 
-        boolean result = studentRepository.selectExistsEmail(student.get(0).getEmail() + "D");
+        boolean result = studentRepositoryUnderTest.selectExistsEmail(student.get(0).getEmail() + "D");
 
         // then
         assertThat(result).isFalse();
