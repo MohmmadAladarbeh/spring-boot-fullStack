@@ -45,6 +45,10 @@ class StudentServiceTest {
         );
         underTest.addStudent(student);
 
+        /**
+        * Is a utility provided by the Mockito library for capturing 
+        * and verifying arguments passed to methods during unit testing
+        */
         ArgumentCaptor <Student> argumentCaptor =
                 ArgumentCaptor.forClass(Student.class);
 
