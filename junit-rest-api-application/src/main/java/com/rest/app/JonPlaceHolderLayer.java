@@ -12,8 +12,8 @@ import java.util.List;
 public class JonPlaceHolderLayer {
 
 
-    public static List<Book> getListOfPost (){
-        List<Book> postList = new ArrayList<>();
+    public static List<BookDTO> getListOfPost (){
+        List<BookDTO> postList = new ArrayList<>();
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest

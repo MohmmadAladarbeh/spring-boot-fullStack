@@ -16,7 +16,7 @@ public class ExampleUtils {
     public static final String USER_API = "https://jsonplaceholder.typicode.com/posts";
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    public static List<Book> toList(InputStream inputStream) {
+    public static List<BookDTO> toList(InputStream inputStream) {
         try {
             return OBJECT_MAPPER.readValue(inputStream, new TypeReference<>() {});
         }
@@ -25,29 +25,29 @@ public class ExampleUtils {
         }
     }
 
-    public static Post toObject(InputStream inputStream) {
+    public static BookDTO toObject(InputStream inputStream) {
         try {
-            return OBJECT_MAPPER.readValue(inputStream, Post.class);
+            return OBJECT_MAPPER.readValue(inputStream, BookDTO.class);
         }
         catch (IOException exc) {
             throw new UncheckedIOException(exc);
         }
     }
 
-    public static String toJson(Post post) {
+    public static String toJson(BookDTO book) {
         try {
-            return OBJECT_MAPPER.writeValueAsString(post);
+            return OBJECT_MAPPER.writeValueAsString(book);
         }
         catch (JsonProcessingException exc) {
             throw new UncheckedIOException(exc);
         }
     }
 
-    public static Post buildPost () {
+    public static BookDTO buildPost () {
 
-        Post post = new Post(
-                random.nextInt(24),
-                random.nextInt(24),
+        BookDTO post = new BookDTO(
+                (long) random.nextInt(24),
+                (long) random.nextInt(24),
                 "Post",
                 "body"
         );
